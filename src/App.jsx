@@ -174,58 +174,68 @@ export default function App() {
     reader.readAsText(file);
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center p-4 text-white">
+ return (
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-black to-purple-900 text-white p-4">
 
-      <div className="w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-6">
+    <div className="w-full max-w-md rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/20 shadow-2xl p-6">
 
-        <h1 className="text-2xl font-bold text-center mb-1">
-          🧠 Mental Math Trainer
-        </h1>
+      {/* HEADER */}
+      <h1 className="text-3xl font-bold text-center">
+        🧠 Math Trainer
+      </h1>
 
-        <p className="text-center text-gray-400 text-sm mb-3">
-          XP {xp} • Score {score} • Level {level}
-        </p>
+      <p className="text-center text-gray-300 text-sm mt-1">
+        XP {xp} • Score {score} • Level {level}
+      </p>
 
-        <div className="flex gap-2 justify-center mb-3">
-          <button onClick={() => setMode("normal")} className="bg-gray-700 px-2 py-1 rounded">Normal</button>
-          <button onClick={() => setMode("boss")} className="bg-red-600 px-2 py-1 rounded">Boss</button>
-          <button onClick={startExam} className="bg-green-600 px-2 py-1 rounded">Exam</button>
-        </div>
-
-        {mode === "boss" && (
-          <div className="text-center text-sm mb-2">
-            Boss HP: {bossHp} | Phase {bossPhase}
-          </div>
-        )}
-
-        <div className="text-center text-3xl font-bold my-6">
-          {question.a} {question.op} {question.b} = ?
-        </div>
-
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="w-full p-3 rounded-xl bg-black/40 border border-white/10 text-white text-center"
-          placeholder="Wpisz odpowiedź"
-        />
-
-        <button
-          onClick={check}
-          className="w-full mt-3 bg-blue-500 hover:bg-blue-600 transition rounded-xl py-3 font-semibold"
-        >
-          Sprawdź
+      {/* MODE */}
+      <div className="flex gap-2 justify-center mt-4">
+        <button className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20">
+          Normal
         </button>
-
-        <div className="text-center mt-3">
-          {feedback}
-        </div>
-
-        <div className="mt-4 text-xs text-gray-400 text-center">
-          Accuracy: {(stats.acc * 100).toFixed(1)}%
-        </div>
-
+        <button className="px-3 py-1 rounded-full bg-red-500/70 hover:bg-red-500">
+          Boss
+        </button>
+        <button className="px-3 py-1 rounded-full bg-green-500/70 hover:bg-green-500">
+          Exam
+        </button>
       </div>
+
+      {/* QUESTION CARD */}
+      <div className="mt-8 text-center">
+        <div className="text-5xl font-extrabold tracking-wide">
+          {question.a} {question.op} {question.b}
+        </div>
+        <div className="text-gray-400 mt-2">= ?</div>
+      </div>
+
+      {/* INPUT */}
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        className="w-full mt-6 p-4 rounded-2xl bg-black/40 border border-white/20 text-center text-lg focus:outline-none focus:border-indigo-400"
+        placeholder="Wpisz odpowiedź"
+      />
+
+      {/* BUTTON */}
+      <button
+        onClick={check}
+        className="w-full mt-4 py-3 rounded-2xl bg-indigo-500 hover:bg-indigo-600 transition font-semibold"
+      >
+        Sprawdź
+      </button>
+
+      {/* FEEDBACK */}
+      <div className="text-center mt-4 text-lg text-gray-200">
+        {feedback}
+      </div>
+
+      {/* STATS */}
+      <div className="mt-6 text-center text-xs text-gray-400">
+        Accuracy: {(stats.acc * 100).toFixed(1)}%
+      </div>
+
     </div>
-  );
+  </div>
+);
 }
